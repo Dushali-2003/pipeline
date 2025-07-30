@@ -21,9 +21,9 @@ pipeline {
                 }
             }
         }
-        stage('Third stage') {
+        stage('Download ansible code') {
             steps {
-                echo 'Third stage'
+                git credentialsId: 'c2a4b92c-4416-4678-a110-60af51634bed', url: 'git@github.com:Dushali-2003/pipeline.git'
             }
         }
     }
