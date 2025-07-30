@@ -26,5 +26,10 @@ pipeline {
                 git credentialsId: 'c2a4b92c-4416-4678-a110-60af51634bed', url: 'git@github.com:Dushali-2003/pipeline.git'
             }
         }
+        stage('Run ansible-lint against playbook') {
+            steps {
+                sh 'docker run --rm -v $WORKSPACE/playbooks:/data cytopia/ansible-lint:4 apache-install.yml'
+                sh 'docker run --rm -v $WORKSPACE/playbooks:/data cytopia/ansible-lint:4 website-update.yml'
+                sh 'docker run --rm -v $WORKSPACE/playbooks:/data cytopia/ansible-lint:4 website-test.yml'
     }
 }
