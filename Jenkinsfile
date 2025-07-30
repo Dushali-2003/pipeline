@@ -2,21 +2,22 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Delete the workspace') {
             steps {
-                echo 'Building...'
+                cleanWs()
             }
         }
 
-        stage('Test') {
+        stage('Installing ansible') {
             steps {
-                echo 'Testing...'
+               sh 'sudo apt-get update -y && sudo apt-get upgrade -y'
+               sh 'sudo apt install -y wget tree unzip ansible python3-pip python3-apt'
             }
         }
 
-        stage('Deploy') {
+        stage('Third stage') {
             steps {
-                echo 'Deploying...'
+                echo 'Third stage'
             }
         }
     }
